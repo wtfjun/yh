@@ -1,0 +1,58 @@
+<section class="rt_wrap content mCustomScrollbar">
+  <div class="rt_content">
+    <div class="page_title">
+      <h2 class="fl"><%= title %> </h2>
+      <span style="margin-left: 10px;"><small style="color: green;"><%= msg %></small></span>
+      <a class="fr top_rt_btn" style="margin-top:5px;" href='/admin/addNews?type=<%= type %>'>添加一条新闻</a> 
+    </div>
+
+    <table class="table">
+      <tr>
+        <th style="width:50px;">标题</th> 
+        <th style="width:100px;">图片封面</th>
+        <th style="width:250px;">内容</th>
+       
+        <th>创建时间</th>
+        <th>创建者</th>
+        <th style="width:200px;">操作</th>
+      </tr>
+    <% for(var i=0; i < news.length; i++) {%>
+      <tr style="text-align: center;">
+        <td style="height:50px; ">
+        <div class="cut_title ellipsis">
+          <%= news[i].title %>
+        </div>
+        </td>
+        <td style="height:50px; ">
+       
+          <img style="width:100px;" src="/images/newsImg/<%= news[i].title_page %>" alt="">
+       
+        </td>
+
+        <td><%= news[i].desc.substring(3,15)+"..." %></td>
+            <% var time = news[i].create_at.toLocaleDateString() %>
+        <td><%= time %></td>
+        <td><%= news[i].user_name %></td>
+        <td>
+          <a href="/admin/reNews?id=<%= news[i]._id %>&title=<%= news[i].title %>&desc=<%= news[i].desc %>" class="inner_btn">编辑</a>
+          <% var id = news[i]._id; %>
+          <a href="/admin/delNews?id=<%= id %>&type=<%= type %>" class="inner_btn">删除</a>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+      <aside class="paging">
+        <a href="/admin/news?type=<%= type %>&p=1">第一页</a>
+        <% for(var j=1; j<= Math.ceil(count/3); j++) { %>
+        <% if(current_page == j) { %>
+        <a href="/admin/news?type=<%= type %>&p=<%= j %>" style="background:#fff; color: green"><%= j %></a>
+        <% } %>
+        <% if(current_page != j) { %>
+        <a href="/admin/news?type=<%= type %>&p=<%= j %>"><%= j %></a>
+        <% } %>
+        <% } %>
+        <a href="/admin/news?type=<%= type %>&p=<%= Math.ceil(count/3) %>">最后一页</a>
+      </aside>
+
+  </div>
+</section>

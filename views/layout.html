@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/responsiveslides.css">
+	<link rel="stylesheet/less" type="text/css" href="/css/app.less">
+	<script src="/js/less.min.js"></script>
+	<title><%- title %></title>
+</head>
+<body>
+<header>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">
+					<img src="/img/logo.png" alt="" width="50px;">
+	      </a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav my-nav">
+	        <li><a href="#" class="one">首页 </a><a href="/" class="two">Home</a><span class="sr-only">(current)</span></li>
+	        
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle one" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">新闻中心 </a><a class="two" href="/news">News</a><span class="caret"></span>
+	          <ul class="dropdown-menu">
+	            <li><a href="/news">公司新闻</a></li>
+	           
+	            <li><a href="#">行业动态</a></li>
+	            <!-- <li role="separator" class="divider"></li> -->
+	            
+	          </ul>
+	        </li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品中心 </a><a class="two" href="">Products</a><span class="caret"></span>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something</a></li>
+	            
+	            <li><a href="#">Separated</a></li>
+	           
+	            
+	          </ul>
+	        </li>
+	      </ul>
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="/about" style="margin-right: 2px;"><i class="fa fa-home fa-lg"></i> 公司简介</a></li>
+	        <li><a href="#">&nbsp<i class="fa fa-mobile-phone fa-lg"></i> &nbsp联系我们</a></li>
+
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+</header>
+	<%-body %>
+<footer>
+	<p>
+Copyright © 2016 DJI 大疆创新 版权所有 <br>
+粤ICP备15057791号-1</p>
+</footer>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/responsiveslides.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script>
+	$('.thumbnail>a').hover(function() {
+		/* Stuff to do when the mouse enters the element */
+		$(this).find('img').css({
+			opacity: '.7',
+			marginTop: '3px',
+			marginLeft: '3px'
+		});
+	}, function() {
+		/* Stuff to do when the mouse leaves the element */
+		$(this).find('img').css({
+			opacity: '1',
+			marginTop: '0px',
+			marginLeft: '0px'
+		});
+	});
+	if ((screen.width < 1366)) {
+		$('.two').hide();
+		$('.my-nav>li span').hide();
+	}
+	
+	if ((screen.width >= 1366)) { 
+		$('nav .my-nav >.dropdown').hover(function() {
+			/* Stuff to do when the mouse enters the element */
+			$(this).addClass('open').find('ul').stop().animate({top: 50}, 400);
+
+			$(this).animate({}, 400).find('span').addClass('trans180');
+		}, function() {
+			/* Stuff to do when the mouse leaves the element */
+			$(this).removeClass('open').find('ul').stop().animate({top: -50}, 400);
+
+			$(this).animate({}, 400).find('span').removeClass('trans180');
+		
+		});
+
+		$('.my-nav>li').hover(function() {
+			/* Stuff to do when the mouse enters the element */
+			$(this).find('.two').stop().animate({top: 0}, 400);
+			$(this).find('.one').stop().animate({top: -50}, 400);
+		}, function() {
+			/* Stuff to do when the mouse leaves the element */
+			$(this).find('.two').stop().animate({top: -50}, 400);
+			$(this).find('.one').stop().animate({top: 0}, 400);
+		});
+	}
+	</script>
+
+	<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+     
+      // Slideshow 4
+      $("#slider4").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: false,
+        speed: 500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
