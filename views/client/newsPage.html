@@ -8,16 +8,19 @@
 		<div class="container-fluid">
 			<div class="row">
 			  <div class="col-md-7 col-sm-7  col-xs-7  left">
-			  <% news.forEach(function(e){ %>
-			    <div class="thumbnail">
-			      <a href="/newsPage?type=<%= e.type %>&id=<%- e._id %>"><img src="/images/newsImg/<%- e.title_page %>" alt="..."></a>
+			    <div class="thumbnail" style="position: relative">
+			      
 			      <div class="caption">
 			        <p class="title">
-								<a href="/newsPage?type=<%- e.type %>&id=<%- e._id %>"><%= e.title %></a></p>
-			        <p class="time"><%= e.create_at.toLocaleDateString() %></p>			        
+								<a href=""><%= news.title %></a></p>
+			        <p class="time"><%= news.create_at.toLocaleDateString() %></p>
+			        <p class="news-cont">
+			        	<%- news.desc %>
+			        </p>
 			      </div>
 			    </div>
-			  <% }) %>
+
+			    
 			  </div>
 				<div class="col-md-1 col-sm-1  col-xs-0"></div>
 			   <div class="col-md-3 col-sm-3  col-xs-5 right">
@@ -57,23 +60,19 @@
 			   </div>
 			</div>
 		</div>
-		<nav class="fenye">
+		<!-- <nav class="fenye">
 		  <ul class="pagination">
-
 		    <li>
-		      <a href="/news?type=<%= type %>&p=<%= current_page-1 %>" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
+		      <a href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo; 上一篇</span>
 		      </a>
 		    </li>
-		    <% for(var j=1; j<= Math.ceil(count/3); j++) { %>
-		    <li><a href="/news?type=<%= type %>&p=<%= j %>"><%= j %></a></li>
-		    <% } %>
 		    <li>
-		      <a href="/news?type=<%= type %>&p=<%= current_page+1 %>" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
+		      <a href="#" aria-label="Next">
+		        <span aria-hidden="true">下一篇 &raquo;</span>
 		      </a>
 		    </li>
 		  </ul>
-		</nav>
+		</nav> -->
 	</div>
 </div>

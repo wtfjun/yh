@@ -35,7 +35,7 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle one" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">新闻中心 </a><a class="two" href="/news">News</a><span class="caret"></span>
 	          <ul class="dropdown-menu">
-	            <li><a href="/news">公司新闻</a></li>
+	            <li><a href="/news?type=company">公司新闻</a></li>
 	           
 	            <li><a href="#">行业动态</a></li>
 	            <!-- <li role="separator" class="divider"></li> -->
@@ -75,7 +75,7 @@ Copyright © 2016 DJI 大疆创新 版权所有 <br>
 	<script src="/js/responsiveslides.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script>
-	$('.thumbnail>a').hover(function() {
+	$('.index .thumbnail>a').hover(function() {
 		/* Stuff to do when the mouse enters the element */
 		$(this).find('img').css({
 			opacity: '.7',
