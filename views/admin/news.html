@@ -9,7 +9,7 @@
     <table class="table">
       <tr>
         <th style="width:50px;">标题</th> 
-        <th style="width:100px;">图片封面</th>
+       
         <th style="width:250px;">内容</th>
        
         <th>创建时间</th>
@@ -23,11 +23,7 @@
           <%= news[i].title %>
         </div>
         </td>
-        <td style="height:50px; ">
-       
-          <img style="width:100px;" src="/images/newsImg/<%= news[i].title_page %>" alt="">
-       
-        </td>
+        
 
         <td><%= news[i].desc.substring(3,15)+"..." %></td>
             <% var time = news[i].create_at.toLocaleDateString() %>

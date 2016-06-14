@@ -1,78 +1,50 @@
-<div class="secont">
-	<div class="sec-header">		
-	  <h1>新闻中心 <small>公司新闻</small></h1>
-	  <p>首页 / 新闻中心 / 公司新闻</p>
+
+<div class="news">
+	<div class="news-header w1200">
+		<img src="/images/barner_news.jpg" alt="" width="100%">
 	</div>
-
-	<div class="sec-main news">
-		<div class="container-fluid">
-			<div class="row">
-			  <div class="col-md-7 col-sm-7  col-xs-7  left">
-			    <div class="thumbnail" style="position: relative">
-			      
-			      <div class="caption">
-			        <p class="title">
-								<a href=""><%= news.title %></a></p>
-			        <p class="time"><%= news.create_at.toLocaleDateString() %></p>
-			        <p class="news-cont">
-			        	<%- news.desc %>
-			        </p>
-			      </div>
-			    </div>
-
-			    
-			  </div>
-				<div class="col-md-1 col-sm-1  col-xs-0"></div>
-			   <div class="col-md-3 col-sm-3  col-xs-5 right">
-						<div class="title">
-							新闻中心
-						</div>
-						<a href="">公司新闻</a>
-						
-						<a href="">行业动态</a>
-
-						<div class="media">
-							<div class="title">社交媒体</div>
-							<a href=""><i class="fa fa-facebook-square fa-lg"></i>facebook</a>
-							<a href=""><i class="fa fa-twitter-square fa-lg"></i>twitter</a>
-							<a href=""><i class="fa fa-youtube-square fa-lg"></i>youtube</a>
-							<a href=""><i class="fa fa-vimeo-square fa-lg"></i>vimeo</a>
-							<a href=""><i class="fa fa-weibo fa-lg"></i>weibo</a>
-						</div>
-
-						<div class="lately-news">
-							<div class="title">最近新闻</div>
-							<% var j=0 %>
-							<% lately_news.forEach(function(e){ 
-								j++;
-								if(j == 4)return;
-							%>
-							<div class="thumbnail">
-					      <a href="/newsPage?id=<%- e._id %>"><img src="/images/newsImg/<%- e.title_page %>" alt="..."></a>
-					      <div class="caption">
-					        <p class="title">
-										<a href="/newsPage?id=<%- e._id %>"><%= e.title %></a></p>
-					        <p class="time"><%= e.create_at.toLocaleDateString() %></p>			        
-					      </div>
-					    </div>
-					    <% }) %>
-						</div>
-			   </div>
+	<div class="w1200">
+		<div class="left">
+			<div class="title">
+				<span class="en">新闻中心</span>
+				<span class="us">News Center</span>
 			</div>
+			<ul>
+			<% if(news.type == 'company') { %>
+				<li><a href="/news?type=company" class="active">公司新闻</a></li>
+			<% } %>
+			<% if(news.type != 'company') { %>
+				<li><a href="/news?type=company">公司新闻</a></li>
+			<% } %>
+			<% if(news.type == 'group') { %>
+				<li><a href="/news?type=group" class="active">行业动态</a></li>
+			<% } %>
+			<% if(news.type != 'group') { %>
+				<li><a href="/news?type=group">行业动态</a></li>
+			<% } %>
+				
+			</ul>
 		</div>
-		<!-- <nav class="fenye">
-		  <ul class="pagination">
-		    <li>
-		      <a href="#" aria-label="Previous">
-		        <span aria-hidden="true">&laquo; 上一篇</span>
-		      </a>
-		    </li>
-		    <li>
-		      <a href="#" aria-label="Next">
-		        <span aria-hidden="true">下一篇 &raquo;</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav> -->
+		<div class="right">
+			<div class="position">
+				<i class="fa fa-home fa-lg" style="color:#888;margin-right: 5px"></i>
+				<a href="/"> 首页</a>
+				 > 
+				<a href="">新闻动态</a>
+				 > 
+				<% if(news.type =='company') { %>
+				<a href="/news?type=company">公司新闻</a>
+				<% } %>
+				<% if(news.type =='group') { %>
+				<a href="/news?type=group">行业动态</a>
+				<% } %>
+			</div>
+			<div class="news-cont">
+				<h2 class="title"><%= news.title %></h2>
+				<p class="time">发布日期： <%= news.create_at.toLocaleDateString() %></p>
+				<div class="desc"><%- news.desc %></div>
+			</div>
+
+		</div>
 	</div>
 </div>

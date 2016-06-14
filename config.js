@@ -1,6 +1,6 @@
 var config = {
 	// mongodb 配置
-  db: 'dj', 
+  db: 'yh', 
   host: 'localhost',
   port: 27017
 };

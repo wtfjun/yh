@@ -1,18 +1,20 @@
 
 <section class="rt_wrap content mCustomScrollbar">
   <div class="rt_content">
+
     <br>
     <button class="link_btn" onclick="setContent()">点击获得原新闻内容</button>
     <br>
+    
     <br>
-    <form id="newsForm" action="/admin/reNews" method="post" enctype="multipart/form-data" onsubmit="return newsSubmit()">
+    <form id="newsForm" action="/admin/reNews" method="post" onsubmit="return newsSubmit()">
+
+    <input class="link_btn" type="submit" value="保存" />
+    <br>
+    <br>
       <input id="title" name="title" class="textbox textbox_295" value='<%= news.title %>' type="text" placeholder="请输入新闻标题">
 
-      <span class="item_name">上传封面图片：</span>
-      <label class="uploadImg">
-         <input type="file" name="inputFile"/>
-         <span>上传图片</span>
-      </label>
+     
 
       <h1>以下填写新闻内容：</h1>
       <input id="desc" type="text" name="desc" style="display: none">
@@ -20,10 +22,10 @@
       <input id="type" type="text" name="type" style="display: none" value='<%= news.type %>'>
         
       
-      <div>    
-        <script id="editor" type="text/plain" style="width:1024px;height:300px;"></script>
+      <div  style="width:900px;z-index:-10;height:400px;">    
+        <script id="editor" type="text/plain" style="width:900px;z-index:-10;height:300px;"></script>
       </div>
-      <input class="link_btn" type="submit" value="Submit" />
+      
     </form>     
   </div>
 </section>

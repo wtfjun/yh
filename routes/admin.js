@@ -91,7 +91,7 @@ router.post('/signup', function(req, res, next) {
         if(err) {
           return handleError(err);
         }
-        res.redirect('/login');
+        res.redirect('/admin/login');
       });
     }
   });
@@ -135,70 +135,28 @@ router.post('/addNews', function(req, res) {
     return;
   }
   else {
-    var fileSrc = 'public/images/newsImg/';//文件上传到该文件夹
-    //生成multiparty对象
-    var form = new multiparty.Form({uploadDir: fileSrc});
-   
-    
-//生成multiparty对象
-  //var form = new multiparty.Form({uploadDir: fileSrc});
-
-  //上传后处理
-    form.parse(req, function(err, fields, files) {
-
-      
-      var filesTmp = JSON.stringify(files,null,2);
-
+    var type = req.body.type;
+    var title = req.body.title;
+    var desc = req.body.desc;
+    var user_name = req.session.user_name;   
+    var news = new News({
+        title: title,
+        desc: desc,
+        user_name: user_name,
+        type: type
+      });
+    news.save(function(err) {
       if(err) {
-        console.log('parse err: ' + err);
-      } 
-      else {
-        var random = Math.random()*10000000000;
-        console.log('parse files: ' + filesTmp);
-          var inputFile = files.inputFile[0];
-          var uploadedPath = inputFile.path;
-          var dstPath = fileSrc + random + inputFile.originalFilename;
-          //重命名为真实文件名
-          fs.rename(uploadedPath, dstPath, function(err) {
-            if(err){
-              console.log('rename error: ' + err);
-            } else {
-              
-              
-              console.log('rename ok');
-            }
-          });   
-          /*res.writeHead(200, {'content-type': 'text/plain;charset=utf-8'});
-          res.write('received upload:\n\n');
-          res.end(util.inspect({fields: fields, files: filesTmp}));
-        return;*//**/
-        var type = fields.type;
-        var title = fields.title;
-        var desc = fields.desc;
-        var title_page = random + inputFile.originalFilename;
-        var user_name = req.session.user_name;   
-        var news = new News({
-            title: title,
-            desc: desc,
-            user_name: user_name,
-            title_page: title_page,
-            type: type
-          });
-        news.save(function(err) {
-          if(err) {
-            return handleError(err);
-          }
-          //console.log(user_name);
-          msg = '成功添加一条新闻！';
-          res.redirect('/admin/news?type='+type);
-        });
-             
-      }   
-
-    });
-      
-  }
+        return handleError(err);
+      }
+      //console.log(user_name);
+      msg = '成功添加一条新闻！';
+      res.redirect('/admin/news?type='+type);
+    });        
+  }   
 });
+      
+  
 
 //后台公司新闻界面
 router.get('/news', function(req, res) {
@@ -206,7 +164,7 @@ router.get('/news', function(req, res) {
     return;
   }
   var page = (req.query.p)?req.query.p:1;
-  var perPage = (req.query.pr)?req.query.pr:3;
+  var perPage = (req.query.pr)?req.query.pr:10;
   var count;
   var type = req.query.type;
 
@@ -267,60 +225,31 @@ router.post('/reNews', function(req, res) {
   if(!hadLogin(req, res)) {
     return;
   }
-  var fileSrc = 'public/images/newsImg/';//文件上传到该文件夹
-  //生成multiparty对象
-  var form = new multiparty.Form({uploadDir: fileSrc}); 
-  form.parse(req, function(err, fields, files) {   
-    var filesTmp = JSON.stringify(files,null,2);
 
+  News.findById(req.body.id, function(err, news) {
     if(err) {
-      console.log('parse err: ' + err);
-    } 
+      return handleError(err);
+    }
     else {
-      var random = Math.random()*10000000000;
-      console.log('parse files: ' + filesTmp);
-      var inputFile = files.inputFile[0];
-      var uploadedPath = inputFile.path;
-      var dstPath = fileSrc + random + inputFile.originalFilename;
-      //重命名为真实文件名
-      fs.rename(uploadedPath, dstPath, function(err) {
-        if(err){
-        console.log('rename error: ' + err);
-        } 
-        else { 
-          console.log('rename ok');
-        }
-      });   
-
-    News.findById(fields.id, function(err, news) {
-      if(err) {
-        return handleError(err);
-      }
-      else {
-        news.type = fields.type;
-        news.title = fields.title;
-        news.desc = fields.desc;
-        news.title_page = random + inputFile.originalFilename;
-        news.user_name = req.session.user_name;   
-        
-        news.save(function(err) {
-          if(err) {
-            return handleError(err);
-          }
-          //console.log(user_name);
-          msg = '成功编辑一条新闻！';
-          res.redirect('/admin/news?type='+fields.type);
-        });
-             
-      }   
-
-    });
+      news.type = req.body.type;
+      news.title = req.body.title;
+      news.desc = req.body.desc;
+      news.user_name = req.session.user_name;   
       
-  }
-
+      news.save(function(err) {
+        if(err) {
+          return handleError(err);
+        }
+        //console.log(user_name);
+        msg = '成功编辑一条新闻！';
+        res.redirect('/admin/news?type='+req.body.type);
+      });
+           
+    }   
+  });     
 });
 
-});
+
 
 //账号设置
 

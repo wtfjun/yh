@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/responsiveslides.css">
+	<link rel="stylesheet/less" type="text/css" href="/css/style.less">
+	<script src="/js/less.min.js"></script>
+	<title><%- title %></title>
+</head>
+<body>
+<header>
+	<div class="header_top">
+		<div class="left">
+			<i class="fa fa-phone-square"></i><span> 咨询热线 ：0755-89953100</span>
+		</div>
+		<div class="right">
+			<span>会员分销 | 服务平台 | 运营服务</span>
+		</div>
+	</div>
+	<div class="nav_con">
+	<nav>
+		<div class="logo"><span><a href="/"><img src="/images/logo.jpg" style="margin-top:12px;"></a></span></div>
+		<div class="header_nav">
+			<ul>
+				<li><a href="/"><i class="fa fa-home fa-2x"></i><br>网站首页</a></li>
+				<li><a href=""><i class="fa fa-product-hunt fa-2x"></i><br>产品中心</a>
+					<ul>
+						<li><a href="/fenxiao">全员分销</a></li>
+						<li><a href="/lianmeng">联盟平台</a></li>
+						<li><a href="/yingjian">平台硬件</a></li>
+						<li><a href="/fuwu">运营服务</a></li>
+					</ul>
+				</li>
+				<li><a href=""><i class="fa fa-newspaper-o fa-2x"></i><br>新闻动态</a>
+					<ul>
+						<li><a href="/news?type=company">公司新闻</a></li>
+						<li><a href="/news?type=group">行业动态</a></li>
+					</ul>
+				</li>
+				<li><a href="/about"><i class="fa fa-smile-o fa-2x"></i><br>关于我们</a></li>
+			</ul>
+		</div>
+	</nav>
+	</div>
+</header>
+
+	<%-body %>
+<footer>
+	<div class="w1200">
+		<div class="footer_top">
+			<dl>
+				<dt>关于我们</dt>
+				<dd><li><a href="/about">公司介绍</a></li></dd>
+				<dd><li><a href="/about">联系我们</a></li></dd>
+				
+			
+			</dl>
+			<dl>
+				<dt>产品中心</dt>
+				<dd><li><a href="/fenxiao">全员分销</a></li></dd>
+				<dd><li><a href="/lianmeng">联盟平台</a></li></dd>
+				<dd><li><a href="/yingjian">平台硬件</a></li></dd>
+				<dd><li><a href="/fuwu">运营服务</a></li></dd>
+			</dl>
+			<dl>
+				<dt>新闻动态</dt>
+				<dd><li><a href="/news?type=company">公司新闻</a></li></dd>
+				<dd><li><a href="/news?type=group">行业动态</a></li></dd>
+				
+			</dl>
+			
+			<div class="footer_right">
+				<p>免费咨询热线</p>
+				<h2>0755-89953100</h2>
+				<div class="adds">
+					<p>地址：深圳市龙岗区坂田街道长坑路东二巷五号楼二层 </p>
+					
+				</div>
+				<p class="wx">
+					<span>官方微信：loulan88shop</span>
+				</p>
+				<img src="/images/erweima7.png" alt="" style="float: right;margin-top: -150px;margin-right: 80px">
+			</div>
+		</div>
+	</div>
+	<div class="footer_bot">
+		<span>
+            Copyright ©2010 - 2016  阳航科技版权所有   All Rights Reserved. 网站ICP备案号：  法律声明
+        </span>
+	</div>
+</footer>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/lunbo.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.header_nav>ul>li').hover(function() {
+			/* Stuff to do when the mouse enters the element */
+			$(this).find('ul').show();
+		}, function() {
+			/* Stuff to do when the mouse leaves the element */
+			$(this).find('ul').hide();
+		});
+	});
+</script>
+</body>
+</html>
